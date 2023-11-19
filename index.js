@@ -39,6 +39,7 @@ app.post("/createLand", async (req, res) => {
       landID,
       ownerName
     );
+    console.log(createLandResponse);
     res.status(200).send(createLandResponse.toString());
   } catch (error) {
     console.error(`Error executing createLand endpoint: ${error}`);
