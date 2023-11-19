@@ -1,0 +1,77 @@
+---
+name: "autochannel"
+version: "1.0.0"
+client:
+  organization: example-reg-com
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+channels:
+  autochannel:
+    peers:
+      peer1.example.reg.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+organizations:
+  example-reg-com:
+    mspid: example-reg-com
+    peers:
+      - peer1.example.reg.com
+    certificateAuthorities:
+      - ca.example.reg.com
+orderers:
+  orderer1.reg.com:
+    url: grpc://172.31.89.52:7006
+    grpcOptions:
+      ssl-target-name-override: orderer1.reg.com
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICijCCAjCgAwIBAgIUJPaDVixkceU72iGyGL6/as40LvgwCgYIKoZIzj0EAwIw
+        YjELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQH
+        DAdSYWxlaWdoMRAwDgYDVQQKDAdyZWcuY29tMRYwFAYDVQQDDA10bHNjYS5yZWcu
+        Y29tMB4XDTIzMTExODIxMjMzOFoXDTMzMTExNTIxMjMzOFowYjELMAkGA1UEBhMC
+        VVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQHDAdSYWxlaWdoMRAw
+        DgYDVQQKDAdyZWcuY29tMRYwFAYDVQQDDA10bHNjYS5yZWcuY29tMFkwEwYHKoZI
+        zj0CAQYIKoZIzj0DAQcDQgAEOHlTVLV5RrqVANteVAwESjrnGVN74+V5A/J21ZpP
+        0yxjl7LOKn+BVixr6i4lSHmFCvb7wReMXVme3p2RaEiWuaOBwzCBwDAdBgNVHQ4E
+        FgQU2/MpzjyvZJFiS6uEwmzluYfRkZMwHwYDVR0jBBgwFoAU2/MpzjyvZJFiS6uE
+        wmzluYfRkZMwDwYDVR0TAQH/BAUwAwEB/zAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0l
+        BBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMD4GA1UdEQQ3MDWHBKwfWTSCDXRsc2Nh
+        LnJlZy5jb22CDXRsc2NhLXJlZy1jb22CCWxvY2FsaG9zdIcEfwAAATAKBggqhkjO
+        PQQDAgNIADBFAiAJ/eUF+uKWQee2eJ8vMXPgIo4jbTFaVfA8zjnJTT8roQIhALxQ
+        zCxovyDARuMUwyiotcMms1132qWIo5wHBH3vs1wU
+        -----END CERTIFICATE-----
+peers:
+  peer1.example.reg.com:
+    url: grpc://172.31.89.52:7002
+    grpcOptions:
+      ssl-target-name-override: peer1.example.reg.com
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICvTCCAmSgAwIBAgIUcAtfKsJOFMIIdiJHJP4OIYBIhUMwCgYIKoZIzj0EAwIw
+        czELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQH
+        DAdSYWxlaWdoMRgwFgYDVQQKDA9leGFtcGxlLnJlZy5jb20xHzAdBgNVBAMMFnRs
+        c2NhMS5leGFtcGxlLnJlZy5jb20wHhcNMjMxMTE4MjEyMjU5WhcNMzMxMTE1MjEy
+        MjU5WjBzMQswCQYDVQQGEwJVUzEXMBUGA1UECAwOTm9ydGggQ2Fyb2xpbmExEDAO
+        BgNVBAcMB1JhbGVpZ2gxGDAWBgNVBAoMD2V4YW1wbGUucmVnLmNvbTEfMB0GA1UE
+        AwwWdGxzY2ExLmV4YW1wbGUucmVnLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEH
+        A0IABKLm8Xi6KHm91fB6Dw0mtDbLeD+/j5VPwv9Q6yHgiBYH07vMA4fGTey+w9il
+        hpC0KV2fNxZQwEjY7M5E8I+L7wCjgdUwgdIwHQYDVR0OBBYEFLM7goTl/KLp5B+d
+        GXlO1CjSKXhuMB8GA1UdIwQYMBaAFLM7goTl/KLp5B+dGXlO1CjSKXhuMA8GA1Ud
+        EwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMB
+        BggrBgEFBQcDAjBQBgNVHREESTBHhwSsH1k0ghZ0bHNjYTEuZXhhbXBsZS5yZWcu
+        Y29tghZ0bHNjYTEtZXhhbXBsZS1yZWctY29tgglsb2NhbGhvc3SHBH8AAAEwCgYI
+        KoZIzj0EAwIDRwAwRAIgNRmBvEMfyo7RSe0MVlTVC7m+zaOAXn76uIpRTA70xkMC
+        IDAF69gdeINmpSMOd7GnHiOpRacexXS3k0oNlMB4IfMS
+        -----END CERTIFICATE-----
+certificateAuthorities:
+  ca.example.reg.com:
+    url: http://172.31.89.52:7054
+    caName: ca.example.reg.com
+    httpOptions:
+      verify: false
