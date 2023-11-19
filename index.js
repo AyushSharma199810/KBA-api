@@ -72,9 +72,9 @@ app.get("/readLand/:landID", async (req, res) => {
     
     // console.log("gateway_conect", a_gateway_connect);
     const network = await gateway.getNetwork(connectionProfile.name);
-    // console.log("network: ", network, "Connection profile:", connectionProfile);
+    console.log("network: ", network);
     const contract = network.getContract("LandContract");
-    console.log("contract",contract);
+    // console.log("contract",contract);
 
     const readLandResponse = await contract.evaluateTransaction(
       "ReadLand",
