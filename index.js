@@ -33,7 +33,7 @@ app.post("/createLand", async (req, res) => {
     await gateway.connect(connectionProfile, gatewayOptions);
     const network = await gateway.getNetwork(connectionProfile.name);
     const contract = network.getContract("LandContract");
-
+    console.log("heello");
     const createLandResponse = await contract.submitTransaction(
       "CreateLand",
       landID,
