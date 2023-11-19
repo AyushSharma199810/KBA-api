@@ -24,7 +24,7 @@ organizations:
       - ca.example.reg.com
 orderers:
   orderer1.reg.com:
-    url: grpcs://172.19.0.6:7006
+    url: grpcs://172.31.89.52:7060
     grpcOptions:
       request-timeout: 120000
       grpc.keepalive_time_ms: 600000
@@ -75,7 +75,7 @@ peers:
         -----END CERTIFICATE-----
 certificateAuthorities:
   ca.example.reg.com:
-    url: https://172.19.0.8:7054
+    url: https://172.31.89.52:7054
     caName: ca.example.reg.com
     httpOptions:
       verify: false
