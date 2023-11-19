@@ -24,7 +24,7 @@ organizations:
       - ca.example.reg.com
 orderers:
   orderer1.reg.com:
-    url: grpc://172.31.89.52:7006
+    url: https://172.19.0.6:7006
     grpcOptions:
       ssl-target-name-override: orderer1.reg.com
     tlsCACerts:
@@ -47,7 +47,7 @@ orderers:
         -----END CERTIFICATE-----
 peers:
   peer1.example.reg.com:
-    url: grpc://172.31.89.52:7002
+    url: https://172.19.0.4:7002
     grpcOptions:
       ssl-target-name-override: peer1.example.reg.com
     tlsCACerts:
