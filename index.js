@@ -1,11 +1,18 @@
 const express = require("express");
 const { Gateway, Wallets } = require("fabric-network");
-const fs = require("fs");
+// const fs = require("fs");
 const FabricCAServices = require("fabric-ca-client");
 const path = require("path");
 const yaml = require("js-yaml");
 const { FileSystemWallet } = Wallets;
 const walletPath = path.join(process.cwd(), "wallet");
+import * as grpc from '@grpc/grpc-js';
+import * as crypto from 'crypto';
+import { connect, Identity, signers } from '@hyperledger/fabric-gateway';
+import { promises as fs } from 'fs';
+import { TextDecoder } from 'util';
+
+const utf8Decoder = new TextDecoder();
 const app = express();
 const port = 8500;
 
@@ -50,32 +57,46 @@ app.post("/createLand", async (req, res) => {
 app.get("/readLand/:landID", async (req, res) => {
   try {
     const { landID } = req.params;
+    const credentials = await fs.readFile('./certificate.pem');
+    const identity = { mspId: 'example-reg-com', credentials };
+    const privateKeyPem = await fs.readFile('path/to/privateKey.pem');
+    const privateKey = crypto.createPrivateKey(privateKeyPem);
+    const signer = signers.newPrivateKeySigner(privateKey);
 
-    const gateway = new Gateway();
-    const walletPath = path.join(process.cwd(), "wallet");
-    const wallet = await Wallets.newFileSystemWallet(walletPath);
-    const connectionProfile = yaml.safeLoad(
-      fs.readFileSync("connection.yaml", "utf8")
-    );
-
-    const gatewayOptions = {
-      wallet,
-      identity: "admin", // Assuming you have a user1 identity in your wallet
-      discovery: { enabled: false, asLocalhost: false },
-    //   timeout: 50000,
-    };
-    // console.log(gatewayOptions);
-   
-     await gateway.connect(
-        connectionProfile,
-        gatewayOptions
-      );
+    const client = new grpc.Client('http://172.18.0.4:7002', grpc.credentials.createInsecure());
+    const gateway = connect({ identity, signer, client });
     
-    // console.log("gateway_conect", a_gateway_connect);
-    const network = await gateway.getNetwork(connectionProfile.name);
-    console.log("network: ", network);
-    const contract = network.getContract("LandContract");
-    // console.log("contract",contract);
+        const network = gateway.getNetwork('autochannel');
+        const contract = network.getContract('LandContract');
+
+        // const getResult = await contract.evaluateTransaction('get', 'time');
+        // console.log('Get result:', utf8Decoder.decode(getResult));
+
+    // const gateway = new Gateway();
+    // const walletPath = path.join(process.cwd(), "wallet");
+    // const wallet = await Wallets.newFileSystemWallet(walletPath);
+    // const connectionProfile = yaml.safeLoad(
+    //   fs.readFileSync("connection.yaml", "utf8")
+    // );
+
+    // const gatewayOptions = {
+    //   wallet,
+    //   identity: "admin", // Assuming you have a user1 identity in your wallet
+    //   discovery: { enabled: false, asLocalhost: false },
+    // //   timeout: 50000,
+    // };
+    // // console.log(gatewayOptions);
+   
+    //  await gateway.connect(
+    //     connectionProfile,
+    //     gatewayOptions
+    //   );
+    
+    // // console.log("gateway_conect", a_gateway_connect);
+    // const network = await gateway.getNetwork(connectionProfile.name);
+    // console.log("network: ", network);
+    // const contract = network.getContract("LandContract");
+    // // console.log("contract",contract);
 
     const readLandResponse = await contract.evaluateTransaction(
       "ReadLand",
