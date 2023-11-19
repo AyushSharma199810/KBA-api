@@ -6,7 +6,7 @@ client:
   connection:
     timeout:
       peer:
-        endorser: '300'
+        endorser: '30000'
 channels:
   autochannel:
     peers:
