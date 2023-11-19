@@ -55,15 +55,15 @@ app.get("/readLand/:landID", async (req, res) => {
     const connectionProfile = yaml.safeLoad(
       fs.readFileSync("connection.yaml", "utf8")
     );
-    console.log(connectionProfile);
-    
+
     const gatewayOptions = {
       wallet,
       identity: "admin", // Assuming you have a user1 identity in your wallet
       discovery: { enabled: true, asLocalhost: false },
     };
     console.log(gatewayOptions);
-    await gateway.connect(connectionProfile, gatewayOptions);
+    const a_gateway_connect = await gateway.connect(connectionProfile, gatewayOptions);
+    console.log("gateway_conect", a_gateway_connect);
     const network = await gateway.getNetwork(connectionProfile.name);
     console.log("network: ",network, "Connection profile:",connectionProfile);
     const contract = network.getContract("LandContract");
