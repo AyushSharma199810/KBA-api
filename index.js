@@ -57,9 +57,10 @@ app.post("/createLand", async (req, res) => {
 app.get("/readLand/:landID", async (req, res) => {
   try {
     const { landID } = req.params;
-    const credentials = await fs.readFile('./certificate.pem');
+    const credentials =  fs.readFile('./certificate.pem');
+    console.log(credentials);
     const identity = { mspId: 'example-reg-com', credentials };
-    const privateKeyPem = await fs.readFile('./privateKey.pem');
+    const privateKeyPem =  fs.readFile('./privateKey.pem');
     const privateKey = crypto.createPrivateKey(privateKeyPem);
     const signer = signers.newPrivateKeySigner(privateKey);
 
