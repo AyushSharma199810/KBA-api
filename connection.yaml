@@ -71,7 +71,7 @@ peers:
         -----END CERTIFICATE-----
 certificateAuthorities:
   ca.example.reg.com:
-    url: http://172.31.89.52:7054
+    url: https://172.19.0.8:7054
     caName: ca.example.reg.com
     httpOptions:
       verify: false
