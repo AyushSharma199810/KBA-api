@@ -11,7 +11,7 @@ const port = 8500;
 
 app.use(express.json());
 const fabricCaClient = new FabricCAServices("https://172.19.0.8:7054");
-console.log(fabricCaClient);
+
 app.post("/createLand", async (req, res) => {
   try {
     const { landID, ownerName } = req.body;
@@ -32,7 +32,7 @@ app.post("/createLand", async (req, res) => {
     await gateway.connect(connectionProfile, gatewayOptions);
     const network = await gateway.getNetwork(connectionProfile.name);
     const contract = network.getContract("LandContract");
-
+     
     const createLandResponse = await contract.submitTransaction(
       "CreateLand",
       landID,
@@ -55,7 +55,7 @@ app.get("/readLand/:landID", async (req, res) => {
     const connectionProfile = yaml.safeLoad(
       fs.readFileSync("connection.yaml", "utf8")
     );
-
+    
     const gatewayOptions = {
       wallet,
       identity: "admin", // Assuming you have a user1 identity in your wallet
@@ -64,6 +64,7 @@ app.get("/readLand/:landID", async (req, res) => {
 
     await gateway.connect(connectionProfile, gatewayOptions);
     const network = await gateway.getNetwork(connectionProfile.name);
+    console.log("network: ",network, "Connection profile:",connectionProfile);
     const contract = network.getContract("LandContract");
 
     const readLandResponse = await contract.evaluateTransaction(
