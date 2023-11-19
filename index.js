@@ -11,6 +11,7 @@ const port = 8500;
 
 app.use(express.json());
 const fabricCaClient = new FabricCAServices("http://172.19.0.8:7054");
+console.log(fabricCaClient);
 app.post("/createLand", async (req, res) => {
   try {
     const { landID, ownerName } = req.body;
@@ -78,11 +79,12 @@ app.get("/readLand/:landID", async (req, res) => {
 app.post("/enrollUser", async (req, res) => {
   try {
     const { enrollmentID, enrollmentSecret, mspId } = req.body;
-
+    console.log(enrollmentID)
     const enrollment = await fabricCaClient.enroll({
       enrollmentID,
       enrollmentSecret,
     });
+    console.log(enrollment)
 
     const identity = {
       credentials: {
