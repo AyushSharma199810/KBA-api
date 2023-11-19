@@ -62,7 +62,11 @@ app.get("/readLand/:landID", async (req, res) => {
       discovery: { enabled: true, asLocalhost: false },
     };
     console.log(gatewayOptions);
-    const a_gateway_connect = await gateway.connect(connectionProfile, gatewayOptions);
+    try {
+        const a_gateway_connect = await gateway.connect(connectionProfile, gatewayOptions);
+    } catch (error) {
+        console.log(error)
+    }
     console.log("gateway_conect", a_gateway_connect);
     const network = await gateway.getNetwork(connectionProfile.name);
     console.log("network: ",network, "Connection profile:",connectionProfile);
