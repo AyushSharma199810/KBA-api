@@ -47,6 +47,7 @@ orderers:
         PQQDAgNIADBFAiAJ/eUF+uKWQee2eJ8vMXPgIo4jbTFaVfA8zjnJTT8roQIhALxQ
         zCxovyDARuMUwyiotcMms1132qWIo5wHBH3vs1wU
         -----END CERTIFICATE-----
+      
 peers:
   peer1.example.reg.com:
     url: grpcs://172.31.89.52:7002
