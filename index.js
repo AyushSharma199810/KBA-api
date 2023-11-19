@@ -1,6 +1,6 @@
 const express = require("express");
 const { Gateway, Wallets } = require("fabric-network");
-// const fs = require("fs");
+const fs = require("fs");
 const FabricCAServices = require("fabric-ca-client");
 const path = require("path");
 const yaml = require("js-yaml");
