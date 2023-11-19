@@ -33,7 +33,7 @@ app.post("/createLand", async (req, res) => {
     await gateway.connect(connectionProfile, gatewayOptions);
     const network = await gateway.getNetwork(connectionProfile.name);
     const contract = network.getContract("LandContract");
-     
+
     const createLandResponse = await contract.submitTransaction(
       "CreateLand",
       landID,
@@ -49,7 +49,7 @@ app.post("/createLand", async (req, res) => {
 app.get("/readLand/:landID", async (req, res) => {
   try {
     const { landID } = req.params;
-    
+
     const gateway = new Gateway();
     const walletPath = path.join(process.cwd(), "wallet");
     const wallet = await Wallets.newFileSystemWallet(walletPath);
@@ -61,16 +61,20 @@ app.get("/readLand/:landID", async (req, res) => {
       wallet,
       identity: "admin", // Assuming you have a user1 identity in your wallet
       discovery: { enabled: true, asLocalhost: false },
+      timeout: 30000,
     };
     console.log(gatewayOptions);
     try {
-        const a_gateway_connect = await gateway.connect(connectionProfile, gatewayOptions);
+      const a_gateway_connect = await gateway.connect(
+        connectionProfile,
+        gatewayOptions
+      );
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
     // console.log("gateway_conect", a_gateway_connect);
     const network = await gateway.getNetwork(connectionProfile.name);
-    console.log("network: ",network, "Connection profile:",connectionProfile);
+    console.log("network: ", network, "Connection profile:", connectionProfile);
     const contract = network.getContract("LandContract");
 
     const readLandResponse = await contract.evaluateTransaction(
@@ -86,12 +90,12 @@ app.get("/readLand/:landID", async (req, res) => {
 app.post("/enrollUser", async (req, res) => {
   try {
     const { enrollmentID, enrollmentSecret, mspId } = req.body;
-    console.log(enrollmentID)
+    console.log(enrollmentID);
     const enrollment = await fabricCaClient.enroll({
       enrollmentID,
       enrollmentSecret,
     });
-    console.log(enrollment)
+    console.log(enrollment);
 
     const identity = {
       credentials: {
