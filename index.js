@@ -9,7 +9,7 @@ const walletPath = path.join(process.cwd(), "wallet");
 const  grpc =require( '@grpc/grpc-js');
 const crypto =require('crypto');
 const { connect, Identity, signers } =require ('@hyperledger/fabric-gateway');
-// const { promises as fs } =require ('fs');
+const { promises } =require ('fs');
 const { TextDecoder } =require ('util');
 
 const utf8Decoder = new TextDecoder();
@@ -57,10 +57,10 @@ app.post("/createLand", async (req, res) => {
 app.get("/readLand/:landID", async (req, res) => {
   try {
     const { landID } = req.params;
-    const credentials =  fs.readFile('./certificate.pem');
+    const credentials = await  promises.readFile('./certificate.pem');
     console.log(credentials);
     const identity = { mspId: 'example-reg-com', credentials };
-    const privateKeyPem =  fs.readFile('./privateKey.pem');
+    const privateKeyPem =  await promises.readFile('./privateKey.pem');
     const privateKey = crypto.createPrivateKey(privateKeyPem);
     const signer = signers.newPrivateKeySigner(privateKey);
 
