@@ -27,7 +27,7 @@ app.post("/createLand", async (req, res) => {
       wallet,
       identity: "admin", // Assuming you have a user1 identity in your wallet
       discovery: { enabled: false, asLocalhost: false },
-      timeout: 50000,
+    //   timeout: 50000,
     };
 
     await gateway.connect(connectionProfile, gatewayOptions);
@@ -61,7 +61,7 @@ app.get("/readLand/:landID", async (req, res) => {
       wallet,
       identity: "admin", // Assuming you have a user1 identity in your wallet
       discovery: { enabled: false, asLocalhost: false },
-      timeout: 50000,
+    //   timeout: 50000,
     };
     console.log(gatewayOptions);
     try {
