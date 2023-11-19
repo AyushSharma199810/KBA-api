@@ -48,13 +48,14 @@ app.post("/createLand", async (req, res) => {
 app.get("/readLand/:landID", async (req, res) => {
   try {
     const { landID } = req.params;
-
+    
     const gateway = new Gateway();
     const walletPath = path.join(process.cwd(), "wallet");
     const wallet = await Wallets.newFileSystemWallet(walletPath);
     const connectionProfile = yaml.safeLoad(
       fs.readFileSync("connection.yaml", "utf8")
     );
+    console.log(connectionProfile);
     
     const gatewayOptions = {
       wallet,
