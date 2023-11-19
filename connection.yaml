@@ -26,6 +26,8 @@ orderers:
   orderer1.reg.com:
     url: grpc://172.19.0.6:7006
     grpcOptions:
+      request-timeout: 12000
+      grpc.keepalive_time_ms: 600000
       ssl-target-name-override: orderer1.reg.com
     tlsCACerts:
       pem: |
@@ -49,6 +51,8 @@ peers:
   peer1.example.reg.com:
     url: grpc://172.19.0.4:7002
     grpcOptions:
+      request-timeout: 12000
+      grpc.keepalive_time_ms: 600000
       ssl-target-name-override: peer1.example.reg.com
     tlsCACerts:
       pem: |
