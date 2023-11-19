@@ -6,11 +6,11 @@ const path = require("path");
 const yaml = require("js-yaml");
 const { FileSystemWallet } = Wallets;
 const walletPath = path.join(process.cwd(), "wallet");
-import * as grpc from '@grpc/grpc-js';
-import * as crypto from 'crypto';
-import { connect, Identity, signers } from '@hyperledger/fabric-gateway';
-import { promises as fs } from 'fs';
-import { TextDecoder } from 'util';
+const  grpc =require( '@grpc/grpc-js');
+const crypto =require('crypto');
+const { connect, Identity, signers } =require ('@hyperledger/fabric-gateway');
+// const { promises as fs } =require ('fs');
+const { TextDecoder } =require ('util');
 
 const utf8Decoder = new TextDecoder();
 const app = express();
@@ -59,7 +59,7 @@ app.get("/readLand/:landID", async (req, res) => {
     const { landID } = req.params;
     const credentials = await fs.readFile('./certificate.pem');
     const identity = { mspId: 'example-reg-com', credentials };
-    const privateKeyPem = await fs.readFile('path/to/privateKey.pem');
+    const privateKeyPem = await fs.readFile('./privateKey.pem');
     const privateKey = crypto.createPrivateKey(privateKeyPem);
     const signer = signers.newPrivateKeySigner(privateKey);
 
