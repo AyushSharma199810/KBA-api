@@ -92,6 +92,7 @@ app.get("/readLand/:landID", async (req, res) => {
 app.post("/enrollUser", async (req, res) => {
   try {
     const { enrollmentID, enrollmentSecret, mspId } = req.body;
+    console.log(fabricCaClient);
     const enrollment = await fabricCaClient.enroll({
       enrollmentID,
       enrollmentSecret,
