@@ -24,9 +24,9 @@ organizations:
       - ca.example.reg.com
 orderers:
   orderer1.reg.com:
-    url: grpc://172.31.89.52:7006
+    url: grpcs://172.31.89.52:7006
     grpcOptions:
-      request-timeout: 120000
+      request-timeout: 1200000
       grpc.keepalive_time_ms: 600000
       ssl-target-name-override: orderer1.reg.com
     tlsCACerts:
@@ -49,9 +49,9 @@ orderers:
         -----END CERTIFICATE-----
 peers:
   peer1.example.reg.com:
-    url: grpc://172.31.89.52:7002
+    url: grpcs://172.31.89.52:7002
     grpcOptions:
-      request-timeout: 120000
+      request-timeout: 1200000
       grpc.keepalive_time_ms: 600000
       ssl-target-name-override: peer1.example.reg.com
     tlsCACerts:
@@ -75,7 +75,7 @@ peers:
         -----END CERTIFICATE-----
 certificateAuthorities:
   ca.example.reg.com:
-    url: https://172.31.89.52:7054
+    url: http://172.31.89.52:7054
     caName: ca.example.reg.com
     httpOptions:
       verify: false
