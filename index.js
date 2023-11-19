@@ -10,7 +10,7 @@ const app = express();
 const port = 8500;
 
 app.use(express.json());
-const fabricCaClient = new FabricCAServices("http://172.19.0.8:7054");
+const fabricCaClient = new FabricCAServices("http://172.18.0.7:7054");
 
 app.post("/createLand", async (req, res) => {
   try {
