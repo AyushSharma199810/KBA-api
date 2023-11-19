@@ -6,7 +6,7 @@ client:
   connection:
     timeout:
       peer:
-        endorser: '30000'
+        endorser: '50000'
 channels:
   autochannel:
     peers:
@@ -47,7 +47,7 @@ orderers:
         -----END CERTIFICATE-----
 peers:
   peer1.example.reg.com:
-    url: grpc://172.19.0.4:7002
+    url: grpcs://172.19.0.4:7002
     grpcOptions:
       ssl-target-name-override: peer1.example.reg.com
     tlsCACerts:
