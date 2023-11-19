@@ -24,7 +24,7 @@ organizations:
       - ca.example.reg.com
 orderers:
   orderer1.reg.com:
-    url: grpc://172.31.89.52:7060
+    url: grpc://172.31.89.52:7006
     grpcOptions:
       request-timeout: 120000
       grpc.keepalive_time_ms: 600000

@@ -82,6 +82,7 @@ app.get("/readLand/:landID", async (req, res) => {
       "ReadLand",
       landID
     );
+    console.log(readLandResponse)
     res.status(200).send(readLandResponse.toString());
   } catch (error) {
     console.error(`Error executing readLand endpoint: ${error}`);
