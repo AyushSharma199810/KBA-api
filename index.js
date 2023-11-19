@@ -25,7 +25,7 @@ app.post("/createLand", async (req, res) => {
 
     const gatewayOptions = {
       wallet,
-      identity: "user1", // Assuming you have a user1 identity in your wallet
+      identity: "admin", // Assuming you have a user1 identity in your wallet
       discovery: { enabled: true, asLocalhost: true },
     };
 
