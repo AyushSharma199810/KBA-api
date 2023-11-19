@@ -63,18 +63,16 @@ app.get("/readLand/:landID", async (req, res) => {
       discovery: { enabled: false, asLocalhost: false },
     //   timeout: 50000,
     };
-    console.log(gatewayOptions);
-    try {
-      const a_gateway_connect = await gateway.connect(
+    // console.log(gatewayOptions);
+   
+     await gateway.connect(
         connectionProfile,
         gatewayOptions
       );
-    } catch (error) {
-      console.log(error);
-    }
+    
     // console.log("gateway_conect", a_gateway_connect);
     const network = await gateway.getNetwork(connectionProfile.name);
-    console.log("network: ", network, "Connection profile:", connectionProfile);
+    // console.log("network: ", network, "Connection profile:", connectionProfile);
     const contract = network.getContract("LandContract");
     console.log("contract",contract);
 
