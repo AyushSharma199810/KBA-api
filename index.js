@@ -60,7 +60,7 @@ app.get("/readLand/:landID", async (req, res) => {
     const gatewayOptions = {
       wallet,
       identity: "admin", // Assuming you have a user1 identity in your wallet
-      discovery: { enabled: true, asLocalhost: true },
+      discovery: { enabled: true, asLocalhost: false },
     };
     console.log(gatewayOptions);
     await gateway.connect(connectionProfile, gatewayOptions);
