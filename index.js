@@ -65,6 +65,7 @@ app.get("/readLand/:landID", async (req, res) => {
     const signer = signers.newPrivateKeySigner(privateKey);
 
     const client = new grpc.Client('grpcs://172.31.89.52:7002', grpc.credentials.createInsecure());
+    console.log(client)
     const gateway = connect({ identity, signer, client });
     
         const network = gateway.getNetwork('autochannel');
